@@ -8,8 +8,22 @@ class AppTheme {
   final AppThemeMode mode;
   final String fontFamily;
 
+  // === TOPOR VPN brand palette (matches the Telegram mini-app) ===
+  static const Color brandOrange = Color(0xFFFF7A3D); // --a1
+  static const Color brandPink = Color(0xFFFF4D6D); // --a2
+  static const Color brandBg = Color(0xFF0B0E14); // --bg
+  static const Color brandCard = Color(0xFF141A24); // --card
+  static const Color brandCard2 = Color(0xFF1B2230); // --card2
+  static const Color brandText = Color(0xFFEEF2F7); // --text
+  static const Color brandHint = Color(0xFF8B95A7); // --hint
+  static const Color brandOk = Color(0xFF32D583); // --ok
+
   ThemeData lightTheme(ColorScheme? lightColorScheme) {
-    final ColorScheme scheme = lightColorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0xFFFF7A18));
+    final ColorScheme scheme = lightColorScheme ??
+        ColorScheme.fromSeed(seedColor: brandOrange).copyWith(
+          primary: const Color(0xFFE85D2B),
+          secondary: brandPink,
+        );
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
@@ -19,12 +33,27 @@ class AppTheme {
   }
 
   ThemeData darkTheme(ColorScheme? darkColorScheme) {
-    final ColorScheme scheme =
-        darkColorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0xFFFF7A18), brightness: Brightness.dark);
+    final ColorScheme scheme = darkColorScheme ??
+        ColorScheme.fromSeed(seedColor: brandOrange, brightness: Brightness.dark).copyWith(
+          primary: brandOrange,
+          onPrimary: Colors.white,
+          secondary: brandPink,
+          onSecondary: Colors.white,
+          surface: brandBg,
+          onSurface: brandText,
+          surfaceContainerLowest: const Color(0xFF090C11),
+          surfaceContainerLow: brandCard,
+          surfaceContainer: brandCard,
+          surfaceContainerHigh: brandCard2,
+          surfaceContainerHighest: brandCard2,
+          onSurfaceVariant: brandHint,
+          outline: const Color(0xFF2A3446),
+          outlineVariant: const Color(0xFF1C2432),
+        );
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: mode.trueBlack ? Colors.black : scheme.background,
+      scaffoldBackgroundColor: mode.trueBlack ? Colors.black : brandBg,
       fontFamily: fontFamily,
       extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
     );

@@ -1,7 +1,7 @@
 name: hiddify
 description: TOPOR VPN — fast VPN client for Windows & macOS.
 publish_to: "none"
-version: 4.2.3+40203
+version: 4.2.4+40204
 
 environment:
   sdk: ^3.10.4
@@ -161,6 +161,9 @@ flutter:
     - family: Shabnam
       fonts:
         - asset: assets/fonts/Shabnam.ttf
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald.ttf
     # - family: Roboto
     #   fonts:
     #     - asset: assets/fonts/Roboto.ttf
