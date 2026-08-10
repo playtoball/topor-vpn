@@ -11,7 +11,7 @@
         {
           "blend-mode" : "normal",
           "fill" : {
-            "solid" : "display-p3:0.29348,0.36978,0.88111,1.00000"
+            "solid" : "srgb:1.00000,0.47843,0.09412,1.00000"
           },
           "glass" : true,
           "image-name" : "logo.svg",

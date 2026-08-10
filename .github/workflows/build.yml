@@ -25,11 +25,11 @@ env:
   # TARGET_NAME_rpm: "Hiddify-rpm-x64"
   TARGET_NAME_apk: "Hiddify-Android"
   TARGET_NAME_aab: "Hiddify-Android"
-  TARGET_NAME_exe: "Hiddify-Windows-Setup-x64"
-  TARGET_NAME_msix: "Hiddify-Windows-x64"
-  TARGET_NAME_zip: "Hiddify-Windows-Portable-x64"
-  TARGET_NAME_dmg: "Hiddify-MacOS"
-  TARGET_NAME_pkg: "Hiddify-MacOS-Installer"
+  TARGET_NAME_exe: "TOPOR-VPN-Windows-Setup-x64"
+  TARGET_NAME_msix: "TOPOR-VPN-Windows-x64"
+  TARGET_NAME_zip: "TOPOR-VPN-Windows-Portable-x64"
+  TARGET_NAME_dmg: "TOPOR-VPN-macOS"
+  TARGET_NAME_pkg: "TOPOR-VPN-macOS-Installer"
   TARGET_NAME_ipa: "Hiddify-iOS"
   
 
