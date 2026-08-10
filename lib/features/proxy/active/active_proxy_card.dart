@@ -44,11 +44,9 @@ class ActiveProxyFooter extends ConsumerWidget with InfraLogger {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background.withOpacity(1),
+        color: theme.colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(color: theme.colorScheme.secondary.withOpacity(.21), blurRadius: 10, offset: const Offset(0, 4)),
-        ],
+        border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
       child: InkWell(
         onTap: () {
@@ -105,9 +103,9 @@ class ActiveProxyFooter extends ConsumerWidget with InfraLogger {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Icon(Icons.arrow_forward_ios, color: Colors.blue),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurfaceVariant),
             ),
           ],
         ),

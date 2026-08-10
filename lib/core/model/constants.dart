@@ -144,4 +144,17 @@ abstract class ConnectionConst {
 
   /// Whether a url-test [delay] (ms) represents a live, usable connection.
   static bool isValidDelay(int delay) => delay > 0 && delay < maxDelay;
+
+  /// TOPOR VPN: ping quality color. green = good, amber = ok, red = bad.
+  static const Color pingGood = Color(0xFF32D583);
+  static const Color pingOkay = Color(0xFFFFB020);
+  static const Color pingSlow = Color(0xFFFF7A3D);
+  static const Color pingBad = Color(0xFFFF4D5A);
+
+  static Color delayColor(int delay) {
+    if (delay <= 0 || delay >= maxDelay) return pingBad;
+    if (delay < 150) return pingGood;
+    if (delay < 300) return pingOkay;
+    return pingSlow;
+  }
 }

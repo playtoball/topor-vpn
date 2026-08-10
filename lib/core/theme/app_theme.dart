@@ -33,6 +33,62 @@ class AppTheme {
     );
   }
 
+  // Mini-app component styling applied to every screen at once.
+  static ThemeData _applyBrand(ThemeData theme) {
+    final scheme = theme.colorScheme;
+    RoundedRectangleBorder r(double radius, {BorderSide side = BorderSide.none}) =>
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius), side: side);
+    return theme.copyWith(
+      textTheme: _brandHeadings(theme.textTheme),
+      splashFactory: InkSparkle.splashFactory,
+      cardTheme: CardThemeData(
+        color: scheme.surfaceContainer,
+        elevation: 0,
+        margin: EdgeInsets.zero,
+        clipBehavior: Clip.antiAlias,
+        shape: r(20, side: BorderSide(color: scheme.outlineVariant)),
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          shape: r(14),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+          textStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(shape: r(14), elevation: 0),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(shape: r(14), side: BorderSide(color: scheme.outlineVariant)),
+      ),
+      listTileTheme: ListTileThemeData(shape: r(14)),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: scheme.surfaceContainerHigh,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(13), borderSide: BorderSide.none),
+        enabledBorder:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(13), borderSide: BorderSide(color: scheme.outlineVariant)),
+        focusedBorder:
+            OutlineInputBorder(borderRadius: BorderRadius.circular(13), borderSide: BorderSide(color: scheme.primary, width: 1.5)),
+      ),
+      chipTheme: ChipThemeData(shape: r(20), side: BorderSide(color: scheme.outlineVariant)),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: scheme.surface,
+        indicatorColor: scheme.primary.withValues(alpha: .18),
+        elevation: 0,
+        labelTextStyle: WidgetStatePropertyAll(
+          TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: scheme.onSurfaceVariant),
+        ),
+      ),
+      navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: scheme.surface,
+        indicatorColor: scheme.primary.withValues(alpha: .18),
+        selectedIconTheme: IconThemeData(color: scheme.primary),
+      ),
+      dividerTheme: DividerThemeData(color: scheme.outlineVariant, thickness: 1),
+    );
+  }
+
   ThemeData lightTheme(ColorScheme? lightColorScheme) {
     final ColorScheme scheme = lightColorScheme ??
         ColorScheme.fromSeed(seedColor: brandOrange).copyWith(
@@ -45,7 +101,7 @@ class AppTheme {
       fontFamily: fontFamily,
       extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
     );
-    return theme.copyWith(textTheme: _brandHeadings(theme.textTheme));
+    return _applyBrand(theme);
   }
 
   ThemeData darkTheme(ColorScheme? darkColorScheme) {
@@ -73,7 +129,7 @@ class AppTheme {
       fontFamily: fontFamily,
       extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
     );
-    return theme.copyWith(textTheme: _brandHeadings(theme.textTheme));
+    return _applyBrand(theme);
   }
 
   CupertinoThemeData cupertinoThemeData(bool sysDark, ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {

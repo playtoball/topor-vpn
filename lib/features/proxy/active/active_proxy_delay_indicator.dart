@@ -36,13 +36,18 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget with InfraLogger {
           }
         },
         borderRadius: BorderRadius.circular(24),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
+          decoration: BoxDecoration(
+            color: (delay > 0 ? ConnectionConst.delayColor(delay) : theme.colorScheme.onSurfaceVariant)
+                .withValues(alpha: .14),
+            borderRadius: BorderRadius.circular(20),
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(FluentIcons.wifi_1_24_regular),
-              const Gap(8),
+              Icon(FluentIcons.wifi_1_24_filled, size: 18, color: ConnectionConst.delayColor(delay)),
+              const Gap(7),
               if (delay > 0)
                 Text.rich(
                   semanticsLabel: isValid ? t.pages.proxies.delay.result(delay: delay) : t.pages.proxies.delay.timeout,
@@ -51,16 +56,15 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget with InfraLogger {
                       if (isValid) ...[
                         TextSpan(
                           text: delay.toString(),
-                          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                          style: theme.textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold, color: ConnectionConst.delayColor(delay)),
                         ),
-                        const TextSpan(text: " ms"),
+                        TextSpan(text: " ms", style: TextStyle(color: ConnectionConst.delayColor(delay))),
                       ] else
                         TextSpan(
                           text: t.common.timeout,
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: theme.colorScheme.error,
-                          ),
+                          style: theme.textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold, color: ConnectionConst.pingBad),
                         ),
                     ],
                   ),

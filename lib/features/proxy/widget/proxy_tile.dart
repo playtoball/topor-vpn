@@ -66,18 +66,6 @@ class ProxyTile extends HookConsumerWidget with PresLogger {
     );
   }
 
-  Color delayColor(BuildContext context, int delay) {
-    if (Theme.of(context).brightness == Brightness.dark) {
-      return switch (delay) {
-        < 800 => Colors.lightGreen,
-        < 1500 => Colors.orange,
-        _ => Colors.redAccent,
-      };
-    }
-    return switch (delay) {
-      < 800 => Colors.green,
-      < 1500 => Colors.deepOrangeAccent,
-      _ => Colors.red,
-    };
-  }
+  // TOPOR VPN: unified ping color (green good → red bad).
+  Color delayColor(BuildContext context, int delay) => ConnectionConst.delayColor(delay);
 }
