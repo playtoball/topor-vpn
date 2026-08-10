@@ -284,7 +284,7 @@ android-aab-release:
 	  --build-dart-define=sentry_dsn=$(SENTRY_DSN) \
 	  --build-dart-define=release=google-play
 
-windows-release: windows-zip-release windows-exe-release windows-msix-release
+windows-release: windows-zip-release windows-exe-release # TOPOR VPN: msix dropped (needs signing)
 
 windows-zip-release:
 	fastforge package \
@@ -458,8 +458,8 @@ linux-docker-release:
 
 	@$(GREEN)Successful. Output is in 'dist_docker' folder.$(DONE)
 
-macos-release:
-	fastforge package --platform macos --targets dmg,pkg $(DISTRIBUTOR_ARGS)
+macos-release: # TOPOR VPN: pkg dropped (needs signing) — dmg only
+	fastforge package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
 
 ios-release: #not tested
 	fastforge package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist $(DISTRIBUTOR_ARGS)

@@ -20,7 +20,8 @@ bool _testCrashReport = false;
 class AnalyticsController extends _$AnalyticsController with AppLogger {
   @override
   Future<bool> build() async {
-    return _preferences.getBool(enableAnalyticsPrefKey) ?? true;
+    // TOPOR VPN: telemetry OFF by default (privacy-first for RU users).
+    return _preferences.getBool(enableAnalyticsPrefKey) ?? false;
   }
 
   SharedPreferences get _preferences => ref.read(sharedPreferencesProvider).requireValue;
