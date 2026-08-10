@@ -18,18 +18,34 @@ class AppTheme {
   static const Color brandHint = Color(0xFF8B95A7); // --hint
   static const Color brandOk = Color(0xFF32D583); // --ok
 
+  // Applied AFTER ThemeData is built so the display font survives the
+  // internal textTheme.apply(fontFamily) (fontFamily is "" on macOS/ru).
+  static TextTheme _brandHeadings(TextTheme t) {
+    TextStyle? h(TextStyle? s, FontWeight w) => s?.copyWith(fontFamily: 'Oswald', fontWeight: w);
+    return t.copyWith(
+      displayLarge: h(t.displayLarge, FontWeight.w700),
+      displayMedium: h(t.displayMedium, FontWeight.w700),
+      displaySmall: h(t.displaySmall, FontWeight.w700),
+      headlineLarge: h(t.headlineLarge, FontWeight.w700),
+      headlineMedium: h(t.headlineMedium, FontWeight.w600),
+      headlineSmall: h(t.headlineSmall, FontWeight.w600),
+      titleLarge: h(t.titleLarge, FontWeight.w600),
+    );
+  }
+
   ThemeData lightTheme(ColorScheme? lightColorScheme) {
     final ColorScheme scheme = lightColorScheme ??
         ColorScheme.fromSeed(seedColor: brandOrange).copyWith(
           primary: const Color(0xFFE85D2B),
           secondary: brandPink,
         );
-    return ThemeData(
+    final theme = ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
       fontFamily: fontFamily,
       extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
     );
+    return theme.copyWith(textTheme: _brandHeadings(theme.textTheme));
   }
 
   ThemeData darkTheme(ColorScheme? darkColorScheme) {
@@ -50,13 +66,14 @@ class AppTheme {
           outline: const Color(0xFF2A3446),
           outlineVariant: const Color(0xFF1C2432),
         );
-    return ThemeData(
+    final theme = ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
       scaffoldBackgroundColor: mode.trueBlack ? Colors.black : brandBg,
       fontFamily: fontFamily,
       extensions: const <ThemeExtension<dynamic>>{ConnectionButtonTheme.light},
     );
+    return theme.copyWith(textTheme: _brandHeadings(theme.textTheme));
   }
 
   CupertinoThemeData cupertinoThemeData(bool sysDark, ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {

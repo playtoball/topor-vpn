@@ -216,53 +216,65 @@ class _ConnectionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TOPOR VPN: big gradient power button (mini-app style).
+    final gradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Color.lerp(buttonColor, Colors.white, 0.14)!,
+        Color.lerp(buttonColor, const Color(0xFFFF4D6D), 0.40)!,
+      ],
+    );
+    Widget circle = Container(
+      clipBehavior: Clip.antiAlias,
+      width: 168,
+      height: 168,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: gradient,
+        boxShadow: [
+          BoxShadow(blurRadius: 44, spreadRadius: 2, color: buttonColor.withValues(alpha: .45)),
+        ],
+      ),
+      child: Material(
+        key: const ValueKey("home_connection_button"),
+        color: Colors.transparent,
+        shape: const CircleBorder(),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onTap,
+          child: Center(
+            child: useImage
+                ? SizedBox(width: 76, height: 76, child: image.image())
+                : const Icon(Icons.power_settings_new_rounded, size: 66, color: Colors.white),
+          ),
+        ),
+      ),
+    );
+    if (animated) {
+      circle = circle
+          .animate(onPlay: (c) => c.repeat(reverse: true))
+          .scaleXY(begin: 1, end: 1.045, duration: 1100.ms, curve: Curves.easeInOut);
+    } else if (!enabled) {
+      circle = circle.animate().fadeIn().scaleXY(begin: .94, end: 1, curve: Curves.easeOut);
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // CircleDesignWidget(newButtonColor: newButtonColor, onTap: onTap, animated: animated),
-        Semantics(
-          button: true,
-          enabled: enabled,
-          label: label,
-          child: Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [BoxShadow(blurRadius: 16, color: buttonColor.withValues(alpha: .5))],
-            ),
-            width: 148,
-            height: 148,
-            child: Material(
-              key: const ValueKey("home_connection_button"),
-              shape: const CircleBorder(),
-              color: Colors.white,
-              child: InkWell(
-                focusColor: Colors.grey,
-                onTap: onTap,
-                child: Padding(
-                  padding: const EdgeInsets.all(36),
-                  child: TweenAnimationBuilder(
-                    tween: ColorTween(end: buttonColor),
-                    duration: const Duration(milliseconds: 250),
-                    builder: (context, value, child) {
-                      if (useImage) {
-                        return image.image();
-                      } else {
-                        return Assets.images.logo.svg(colorFilter: ColorFilter.mode(value!, BlendMode.srcIn));
-                      }
-                    },
-                  ),
-                ),
-              ),
-            ).animate(target: enabled ? 0 : 1).blurXY(end: 1),
-          ).animate(target: enabled ? 0 : 1).scaleXY(end: .88, curve: Curves.easeIn),
-        ),
-        const Gap(16),
+        Semantics(button: true, enabled: enabled, label: label, child: circle),
+        const Gap(22),
         ExcludeSemantics(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AnimatedText(label, style: Theme.of(context).textTheme.titleMedium),
+              AnimatedText(
+                label,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontFamily: 'Oswald',
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.4,
+                    ),
+              ),
               if (secureLabel.isNotEmpty) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
