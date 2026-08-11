@@ -83,9 +83,31 @@ class AppTheme {
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: scheme.surface,
         indicatorColor: scheme.primary.withValues(alpha: .18),
+        useIndicator: true,
         selectedIconTheme: IconThemeData(color: scheme.primary),
+        unselectedIconTheme: IconThemeData(color: scheme.onSurfaceVariant),
+        selectedLabelTextStyle: TextStyle(color: scheme.primary, fontWeight: FontWeight.w700),
+        unselectedLabelTextStyle: TextStyle(color: scheme.onSurfaceVariant, fontWeight: FontWeight.w500),
       ),
       dividerTheme: DividerThemeData(color: scheme.outlineVariant, thickness: 1),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: scheme.surfaceContainer,
+        surfaceTintColor: Colors.transparent,
+        showDragHandle: true,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: scheme.surfaceContainerHigh,
+        contentTextStyle: TextStyle(color: scheme.onSurface),
+        shape: r(14),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: scheme.primary),
+      dialogTheme: DialogThemeData(
+        backgroundColor: scheme.surfaceContainer,
+        surfaceTintColor: Colors.transparent,
+        shape: r(24),
+      ),
     );
   }
 

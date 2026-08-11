@@ -258,10 +258,38 @@ class _ConnectionButton extends StatelessWidget {
     } else if (!enabled) {
       circle = circle.animate().fadeIn().scaleXY(begin: .94, end: 1, curve: Curves.easeOut);
     }
+    final hero = SizedBox(
+      width: 212,
+      height: 212,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [buttonColor.withValues(alpha: .16), Colors.transparent],
+                stops: const [0.55, 1.0],
+              ),
+            ),
+            child: const SizedBox.expand(),
+          ),
+          Container(
+            width: 192,
+            height: 192,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: buttonColor.withValues(alpha: .22), width: 1.5),
+            ),
+          ),
+          circle,
+        ],
+      ),
+    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Semantics(button: true, enabled: enabled, label: label, child: circle),
+        Semantics(button: true, enabled: enabled, label: label, child: hero),
         const Gap(22),
         ExcludeSemantics(
           child: Column(
