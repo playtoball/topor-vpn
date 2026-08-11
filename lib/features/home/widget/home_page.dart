@@ -35,13 +35,21 @@ class HomePage extends HookConsumerWidget {
         //     : null,
         title: Row(
           children: [
-            Assets.images.logo.svg(height: 24),
-            const Gap(8),
+            Assets.images.logo.svg(height: 26),
+            const Gap(9),
             Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(text: t.common.appTitle),
-                  const TextSpan(text: " "),
+                  TextSpan(
+                    text: t.common.appTitle,
+                    style: const TextStyle(
+                      fontFamily: 'Oswald',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 21,
+                      letterSpacing: 0.6,
+                    ),
+                  ),
+                  const TextSpan(text: "  "),
                   const WidgetSpan(child: AppVersionLabel(), alignment: PlaceholderAlignment.middle),
                 ],
               ),
@@ -150,7 +158,7 @@ class HomePage extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Material(
-                      color: theme.colorScheme.primaryContainer,
+                      color: theme.colorScheme.surfaceContainerHigh,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(16),
                         topRight: Radius.circular(16),
@@ -162,14 +170,17 @@ class HomePage extends HookConsumerWidget {
                         ),
                         onTap: () => ref.read(bottomSheetsNotifierProvider.notifier).showQuickSettings(),
                         child: Container(
-                          height: 32,
-                          padding: const EdgeInsetsDirectional.only(start: 16, end: 8),
+                          height: 34,
+                          padding: const EdgeInsetsDirectional.only(start: 16, end: 10),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(t.pages.home.quickSettings),
+                              Text(
+                                t.pages.home.quickSettings,
+                                style: TextStyle(color: theme.colorScheme.primary, fontWeight: FontWeight.w600),
+                              ),
                               const Gap(4),
-                              const Icon(Icons.arrow_drop_up_rounded, size: 16),
+                              Icon(Icons.arrow_drop_up_rounded, size: 18, color: theme.colorScheme.primary),
                             ],
                           ),
                         ),
