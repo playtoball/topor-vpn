@@ -23,8 +23,8 @@ env:
   TARGET_NAME_AppImage: "Hiddify-Linux-x64-AppImage"
   TARGET_NAME_deb: "Hiddify-Debian-x64"
   # TARGET_NAME_rpm: "Hiddify-rpm-x64"
-  TARGET_NAME_apk: "Hiddify-Android"
-  TARGET_NAME_aab: "Hiddify-Android"
+  TARGET_NAME_apk: "TOPOR-VPN-Android"
+  TARGET_NAME_aab: "TOPOR-VPN-Android"
   TARGET_NAME_exe: "TOPOR-VPN-Windows-Setup-x64"
   TARGET_NAME_msix: "TOPOR-VPN-Windows-x64"
   TARGET_NAME_zip: "TOPOR-VPN-Windows-Portable-x64"
@@ -66,7 +66,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # TOPOR VPN: desktop-only MVP — android/linux disabled, only Windows + macOS.
+          # TOPOR VPN: Windows + macOS + Android (linux/iOS disabled).
+          - platform: android-apk
+            os: ubuntu-latest
+            targets: apk
+
           - platform: windows
             os: windows-latest
             aarch: amd64
