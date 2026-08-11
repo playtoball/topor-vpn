@@ -10,6 +10,8 @@ import 'package:hiddify/features/profile/widget/profile_tile.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_card.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_delay_indicator.dart';
 import 'package:hiddify/features/home/widget/home_traffic_card.dart';
+import 'package:hiddify/features/profile/model/profile_entity.dart';
+import 'package:hiddify/features/purchase/tariffs_page.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -69,6 +71,26 @@ class HomePage extends HookConsumerWidget {
           //     material: (context, platform) => MaterialIconButtonData(
           //           tooltip: t.profile.add.buttonText,
           //         )),
+          Semantics(
+            label: 'Продлить ключ',
+            child: IconButton(
+              tooltip: 'Продлить ключ',
+              icon: Icon(Icons.workspace_premium_rounded, color: theme.colorScheme.primary),
+              onPressed: () {
+                final url = switch (ref.read(activeProfileProvider).valueOrNull) {
+                  RemoteProfileEntity(:final url) => url,
+                  _ => null,
+                };
+                if (url == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Сначала добавьте подписку')),
+                  );
+                  return;
+                }
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => TariffsPage(subUrl: url)));
+              },
+            ),
+          ),
           Semantics(
             key: const ValueKey("profile_add_button"),
             label: t.pages.profiles.add,
