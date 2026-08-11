@@ -447,8 +447,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # prerelease: ${{ env.CHANNEL == 'dev' }}
-          prerelease: true
+          # TOPOR VPN: mark as the "latest" release so releases/latest/download/* links auto-advance
+          prerelease: false
+          make_latest: true
           tag_name: ${{ env.TAG_NAME }}
           body_path: './release.md'
           files: ./out/*
