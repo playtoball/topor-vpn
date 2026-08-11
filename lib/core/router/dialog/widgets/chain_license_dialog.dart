@@ -56,7 +56,7 @@ class ChainLicenseDialog extends HookConsumerWidget {
             tos: (text) => TextSpan(
               text: text,
               style: TextStyle(
-                color: focusStates[termsKey]!.value ? Colors.green : Colors.blue,
+                color: focusStates[termsKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () async {
@@ -66,7 +66,7 @@ class ChainLicenseDialog extends HookConsumerWidget {
             privacy: (text) => TextSpan(
               text: text,
               style: TextStyle(
-                color: focusStates[privacyKey]!.value ? Colors.green : Colors.blue,
+                color: focusStates[privacyKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () async {
@@ -78,7 +78,7 @@ class ChainLicenseDialog extends HookConsumerWidget {
             tos: (text) => TextSpan(
               text: text,
               style: TextStyle(
-                color: focusStates[termsKey]!.value ? Colors.green : Colors.blue,
+                color: focusStates[termsKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline,
               ),
@@ -90,7 +90,7 @@ class ChainLicenseDialog extends HookConsumerWidget {
             privacy: (text) => TextSpan(
               text: text,
               style: TextStyle(
-                color: focusStates[privacyKey]!.value ? Colors.green : Colors.blue,
+                color: focusStates[privacyKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline,
               ),

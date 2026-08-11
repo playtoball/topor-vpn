@@ -117,7 +117,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                         tap: (text) => TextSpan(
                           text: text,
                           style: TextStyle(
-                            color: focusStates[IntroConst.termsAndConditionsKey]!.value ? Colors.green : Colors.blue,
+                            color: focusStates[IntroConst.termsAndConditionsKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {
@@ -137,7 +137,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                         tap_source: (text) => TextSpan(
                           text: text,
                           style: TextStyle(
-                            color: focusStates[IntroConst.githubKey]!.value ? Colors.green : Colors.blue,
+                            color: focusStates[IntroConst.githubKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {
@@ -147,7 +147,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                         tap_license: (text) => TextSpan(
                           text: text,
                           style: TextStyle(
-                            color: focusStates[IntroConst.githubKey]!.value ? Colors.green : Colors.blue,
+                            color: focusStates[IntroConst.githubKey]!.value ? Colors.green : const Color(0xFFFF7A3D),
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {

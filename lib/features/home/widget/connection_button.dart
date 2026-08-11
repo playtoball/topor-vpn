@@ -91,7 +91,7 @@ class ConnectionButton extends HookConsumerWidget {
     //   //   //   _ => "",
     //   //   // },
     //   //   color: switch (connectionStatus) {
-    //   //     AsyncData(value: Connected()) when requiresReconnect == true => Colors.teal,
+    //   //     AsyncData(value: Connected()) when requiresReconnect == true => const Color(0xFFFFB020),
     //   //     AsyncData(value: Connected()) when delay <= 0 || delay >= 65000 => Color.fromARGB(255, 157, 139, 1),
     //   //     AsyncData(value: Connected()) => Colors.green.shade900,
     //   //     AsyncData(value: _) => Colors.indigo.shade700, // Color(0xFF3446A5), //buttonTheme.idleColor!,
@@ -154,7 +154,7 @@ class ConnectionButton extends HookConsumerWidget {
         _ => "",
       },
       buttonColor: switch (connectionStatus) {
-        AsyncData(value: Connected()) when requiresReconnect == true => Colors.teal,
+        AsyncData(value: Connected()) when requiresReconnect == true => const Color(0xFFFFB020),
         AsyncData(value: Connected()) when !ConnectionConst.isValidDelay(delay) => const Color.fromARGB(255, 185, 176, 103),
         AsyncData(value: Connected()) => buttonTheme.connectedColor!,
         AsyncData(value: _) => buttonTheme.idleColor!,
@@ -170,7 +170,7 @@ class ConnectionButton extends HookConsumerWidget {
         _ => Assets.images.disconnectNorouz,
       },
       newButtonColor: switch (connectionStatus) {
-        AsyncData(value: Connected()) when requiresReconnect == true => Colors.teal,
+        AsyncData(value: Connected()) when requiresReconnect == true => const Color(0xFFFFB020),
         AsyncData(value: Connected()) when !ConnectionConst.isValidDelay(delay) => const Color.fromARGB(255, 185, 176, 103),
         AsyncData(value: Connected()) => buttonTheme.connectedColor!,
         AsyncData(value: _) => buttonTheme.idleColor!,
